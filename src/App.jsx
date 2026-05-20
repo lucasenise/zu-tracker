@@ -386,7 +386,7 @@ export default function ZuTracker() {
           border: 1.5px solid var(--border);
           border-radius: 10px;
           font-family: 'Literata', Georgia, serif;
-          font-size: 14px;
+          font-size: 16px;
           font-weight: 300;
           line-height: 1.75;
           color: var(--ink);
