@@ -107,7 +107,8 @@ export default function ZuTracker() {
   const periodData = dayData[period] || {};
 
   function setFace(val) {
-    persist(selectedDate, period, val, periodData.notes ?? "");
+    const next = periodData.face === val ? null : val;
+    persist(selectedDate, period, next, periodData.notes ?? "");
   }
 
   function setNotes(val) {
@@ -597,6 +598,7 @@ export default function ZuTracker() {
                     const thisDate = new Date(year, month, day);
                     const isMonthDay = day === 24 && thisDate >= BIRTH_DATE;
                     const monthsOld = isMonthDay ? (year - 2026) * 12 + (month - 1) : null;
+                    const validFace = face !== undefined && face !== null;
                     return (
                       <div
                         key={day}
@@ -605,7 +607,7 @@ export default function ZuTracker() {
                       >
                         <span className="cal-day-num">{day}</span>
                         {isMonthDay && monthsOld > 0 && <span className="month-age">{monthsOld}m</span>}
-                        {face !== undefined
+                        {validFace
                           ? <span className="cal-face" title={FACES[face].label}>{FACES[face].emoji}</span>
                           : <span className="cal-face-empty" />}
                       </div>
